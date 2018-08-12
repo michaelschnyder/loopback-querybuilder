@@ -18,8 +18,9 @@ The following operations are supported and covered by tests.
 
 Other operations are currently not supported.
 
-## Sources
+## Additional Sources
 * [Waterline Query Syntax](https://sailsjs.com/documentation/concepts/models-and-orm/query-language)
 * [Waterline Query Examples](https://github.com/sailshq/waterline-query-docs/blob/master/docs/criteria.md)
+* [LINQ: Building an IQueryable Provider – Part II](https://blogs.msdn.microsoft.com/mattwar/2007/07/31/linq-building-an-iqueryable-provider-part-ii/) by Matt Warren - MSFT
 
 
