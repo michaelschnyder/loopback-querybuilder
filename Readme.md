@@ -22,5 +22,6 @@ Other operations are currently not supported.
 * [Waterline Query Syntax](https://sailsjs.com/documentation/concepts/models-and-orm/query-language)
 * [Waterline Query Examples](https://github.com/sailshq/waterline-query-docs/blob/master/docs/criteria.md)
 * [LINQ: Building an IQueryable Provider – Part II](https://blogs.msdn.microsoft.com/mattwar/2007/07/31/linq-building-an-iqueryable-provider-part-ii/) by Matt Warren - MSFT
+* [Mongo DB - C# Client Documentation](https://mongodb-documentation.readthedocs.io/en/latest/ecosystem/tutorial/use-linq-queries-with-csharp-driver.html)
 
 
