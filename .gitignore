@@ -1,0 +1,9 @@
+*/.vs/
+*/_NCrunch*
+**/bin/Debug/
+**/obj/Debug/
+//*.ncrunchsolution
+*.user
+
+**/packages/**
+src/LoopbackQueryBuilder/obj/

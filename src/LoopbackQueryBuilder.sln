@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2047
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoopbackQueryBuilder.Tests", "LoopbackQueryBuilder.Tests\LoopbackQueryBuilder.Tests.csproj", "{AD1B0270-4261-4C8D-A5C6-F00FDA943DA3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{89926E24-CD2C-48FC-AF9A-E9AAADEF3C9B}"
+	ProjectSection(SolutionItems) = preProject
+		..\Readme.md = ..\Readme.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoopbackQueryBuilder", "LoopbackQueryBuilder\LoopbackQueryBuilder.csproj", "{554E3654-FCFC-4D67-BFE8-EF54920CE359}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD1B0270-4261-4C8D-A5C6-F00FDA943DA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD1B0270-4261-4C8D-A5C6-F00FDA943DA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD1B0270-4261-4C8D-A5C6-F00FDA943DA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD1B0270-4261-4C8D-A5C6-F00FDA943DA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{554E3654-FCFC-4D67-BFE8-EF54920CE359}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{554E3654-FCFC-4D67-BFE8-EF54920CE359}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{554E3654-FCFC-4D67-BFE8-EF54920CE359}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{554E3654-FCFC-4D67-BFE8-EF54920CE359}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9EBC815C-85C9-46B9-B6A1-93809D9503DD}
+	EndGlobalSection
+EndGlobal
