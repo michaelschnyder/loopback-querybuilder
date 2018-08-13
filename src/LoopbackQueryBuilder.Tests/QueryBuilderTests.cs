@@ -48,6 +48,22 @@ namespace LoopbackQueryBuilder.Tests
         }
 
         [TestMethod]
+        public void Where_Equals_BooleanExplicit()
+        {
+            var queryResult = GetQueryBuilder().Where(car => car.IsPerfect == true);
+
+            Assert.AreEqual("{ where: { isPerfect: true } }", queryResult);
+        }
+
+        [TestMethod]
+        public void Where_Equals_BooleanImplicit()
+        {
+            var queryResult = GetQueryBuilder().Where(car => car.IsPerfect);
+
+            Assert.AreEqual("{ where: { isPerfect: true } }", queryResult);
+        }
+
+        [TestMethod]
         public void Where_EqualsAnd_String()
         {
             var queryResult = GetQueryBuilder().Where(car => car.Id == 2 && car.Name == "Audi");

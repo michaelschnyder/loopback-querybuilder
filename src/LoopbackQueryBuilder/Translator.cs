@@ -46,16 +46,23 @@ namespace LoopbackQueryBuilder
         protected override Expression VisitConstant(ConstantExpression node)
         {
             var binaryOperation = (_currentOperation as EqualityOperation);
-            binaryOperation.Value = node.Value.ToString();
 
             if (node.Type == typeof(int) || node.Type == typeof(double))
             {
+                binaryOperation.Value = node.Value.ToString();
                 binaryOperation.IsSaveValue = true;
             }
 
             if (node.Type == typeof(string))
             {
+                binaryOperation.Value = node.Value.ToString();
                 binaryOperation.IsSaveValue = false;
+            }
+
+            if (node.Type == typeof(bool))
+            {
+                binaryOperation.Value = MakeLowerCamelCase(node.Value.ToString());
+                binaryOperation.IsSaveValue = true;
             }
 
             return node;

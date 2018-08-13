@@ -16,6 +16,9 @@ var query = builder.Where(car => car.Id = 2 && car.Name == "Audi");
 
 var query = builder.Where(car => car.Name.Contains("au"));
 // Result: { where: { name: { 'like': '%di%' } } }
+
+var query = builder.Where(car => car.Name.IsPerfect == true);
+// Result: { where: { isPerfect: true } }
 ```
 
 ## Supported Operations
