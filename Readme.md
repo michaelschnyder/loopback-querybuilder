@@ -9,19 +9,19 @@ In my case, I wanted to convert expressions on a `Queryable` to be used on a rat
 var builder = new LookbackQueryBuilder<Car>();
 
 var query = builder.Where(car => car.Id = 2);
-// Result: { where: { id: 2 } }
+// Result: { "where": { "id": 2 } }
 
 var query = builder.Where(car => car.Id = 2 && car.Name == "Audi");
-// Result: { where: { and: [ { id: 2 }, { name: 'Audi' } ] } }
+// Result: { "where": { "and": [ { "id": 2 }, { "name": "Audi" } ] } }
 
 var query = builder.Where(car => car.Name.Contains("au"));
-// Result: { where: { name: { 'like': '%di%' } } }
+// Result: { "where": { "name": { "like": "%di%" } } }
 
 var query = builder.Where(car => car.Name.Contains("foo") && car.Name == "bla");
-// Result: { where: { and: [ { name: { 'like': '%foo%' } }, { name: 'bla' } ] } }
+// Result: { "where": { "and": [ { "name": { "like": "%foo%" } }, { "name": "bla" } ] } }
 
 var query = builder.Where(car => car.Name.IsPerfect == true);
-// Result: { where: { isPerfect: true } }
+// Result: { "where": { "isPerfect": true } }
 ```
 
 ## Supported Operations

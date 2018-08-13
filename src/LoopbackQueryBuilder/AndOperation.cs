@@ -4,11 +4,15 @@ namespace LoopbackQueryBuilder
 {
     internal class AndOperation : OperationBase
     {
+        public AndOperation(SerializationSettings serializationSettings): base(serializationSettings)
+        {
+        }
+
         public override string ToString()
         {
             var sb = new StringBuilder();
 
-            sb.Append("{ and: [ ");
+            sb.Append($"{{ {SerializationSettings.OperationEscape}and{SerializationSettings.OperationEscape}: [ ");
 
             for (var index = 0; index < Children.Count; index++)
             {

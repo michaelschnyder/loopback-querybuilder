@@ -4,7 +4,7 @@
     {
         private readonly ComparisionMode _mode;
 
-        public CompareOperation(ComparisionMode mode)
+        public CompareOperation(SerializationSettings serializationSettings, ComparisionMode mode) : base(serializationSettings)
         {
             _mode = mode;
         }
@@ -20,9 +20,9 @@
                 rawValue = $"%{Value}%";
             }
 
-            var saveValue = !this.IsSaveValue ? $"'{rawValue}'" : rawValue;
+            var saveValue = !IsSaveValue ? $"{SerializationSettings.UnsafeValueEscape}{rawValue}{SerializationSettings.UnsafeValueEscape}" : rawValue;
 
-            return $"{{ {ColumnName}: {{ '{operationString}': {saveValue} }} }}";
+            return $"{{ {SerializationSettings.PropertyEscape}{ColumnName}{SerializationSettings.PropertyEscape}: {{ {SerializationSettings.OperationEscape}{operationString}{SerializationSettings.OperationEscape}: {saveValue} }} }}";
         }
     }
 }

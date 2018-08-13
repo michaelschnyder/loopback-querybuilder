@@ -8,22 +8,22 @@
 
         public bool IsSaveValue { get; set; }
 
-        public EqualityOperation()
-        {
-            
-        }
 
-        public EqualityOperation(string name, string foo)
+        public EqualityOperation(string name, string foo) : base(new SerializationSettings())
         {
             ColumnName = name;
             Value = foo;
         }
 
+        public EqualityOperation(SerializationSettings serializationSerialization) : base(serializationSerialization)
+        {
+        }
+
         public override string ToString()
         {
-            var value = !this.IsSaveValue ? $"'{Value}'" : Value;
+            var value = !this.IsSaveValue ? $"{SerializationSettings.UnsafeValueEscape}{Value}{SerializationSettings.UnsafeValueEscape}" : Value;
 
-            return $"{{ {ColumnName}: {value} }}";
+            return $"{{ {SerializationSettings.PropertyEscape}{ColumnName}{SerializationSettings.PropertyEscape}: {value} }}";
         }
     }
 }
