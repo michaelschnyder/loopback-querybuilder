@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Car.cs" />
+    <Compile Include="ConcreteModelTests.cs" />
     <Compile Include="OperationSerializationTests.cs" />
     <Compile Include="QueryBuilderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
