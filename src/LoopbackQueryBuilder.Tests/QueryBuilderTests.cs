@@ -71,9 +71,9 @@ namespace LoopbackQueryBuilder.Tests
             Assert.AreEqual("{ where: { and: [ { id: 2 }, { name: 'Audi' } ] } }", queryResult);
         }
 
-        private LookbackQueryBuilder<Car> GetQueryBuilder()
+        private LoopbackQueryBuilder<Car> GetQueryBuilder()
         {
-            var lookbackQueryBuilder = new LookbackQueryBuilder<Car>();
+            var lookbackQueryBuilder = new LoopbackQueryBuilder<Car>();
 
             lookbackQueryBuilder.SerializationSettings.PropertyEscape = null;
             lookbackQueryBuilder.SerializationSettings.OperationEscape = null;

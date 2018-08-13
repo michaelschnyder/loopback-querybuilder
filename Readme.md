@@ -6,7 +6,7 @@ In my case, I wanted to convert expressions on a `Queryable` to be used on a rat
 
 ## Sample
 ```c#
-var builder = new LookbackQueryBuilder<Car>();
+var builder = new LoopbackQueryBuilder<Car>();
 
 var query = builder.Where(car => car.Id = 2);
 // Result: { "where": { "id": 2 } }

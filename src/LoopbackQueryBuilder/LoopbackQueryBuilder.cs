@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace LoopbackQueryBuilder
 {
-    public class LookbackQueryBuilder<T>
+    public class LoopbackQueryBuilder<T>
     {
         public SerializationSettings SerializationSettings { get; set; } = new SerializationSettings();
 

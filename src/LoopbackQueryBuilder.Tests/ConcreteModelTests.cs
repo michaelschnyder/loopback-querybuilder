@@ -33,7 +33,7 @@ namespace LoopbackQueryBuilder.Tests
         [TestMethod]
         public void QueryByMediaCardAndMasterDvdMade()
         {
-            var builder = new LookbackQueryBuilder<Job>();
+            var builder = new LoopbackQueryBuilder<Job>();
 
             var query = builder.Where(j => j.MediaCardId == 12 && j.IsMasterDvd == true);
 

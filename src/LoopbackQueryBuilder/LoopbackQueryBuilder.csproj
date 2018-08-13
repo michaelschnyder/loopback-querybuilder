@@ -43,7 +43,7 @@
     <Compile Include="AndOperation.cs" />
     <Compile Include="CompareOperation.cs" />
     <Compile Include="EqualityOperation.cs" />
-    <Compile Include="LookbackQueryBuilder.cs" />
+    <Compile Include="LoopbackQueryBuilder.cs" />
     <Compile Include="OperationBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Translator.cs" />
