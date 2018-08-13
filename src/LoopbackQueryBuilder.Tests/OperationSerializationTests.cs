@@ -6,11 +6,47 @@ namespace LoopbackQueryBuilder.Tests
     public class OperationSerializationTests
     {
         [TestMethod]
-        public void TestMethod2()
+        public void Equality_DefaultSerialization_Renders()
         {
-            var and = new EqualityOperation("name", "foo");
+            var defaultSerializationSettings = new SerializationSettings();
 
-            Assert.AreEqual("{ name: 'foo' }", and.ToString());
+            var operation = new EqualityOperation(defaultSerializationSettings)
+            {
+                ColumnName = "name",
+                Value = "foo"
+            };
+
+            Assert.AreEqual("{ \"name\": \"foo\" }", operation.ToString());
+        }
+
+        [TestMethod]
+        public void Equality_NoPropertyEscape_Renders()
+        {
+            var serializationSettings = new SerializationSettings();
+            serializationSettings.PropertyEscape = null;
+
+            var operation = new EqualityOperation(serializationSettings)
+            {
+                ColumnName = "name",
+                Value = "foo"
+            };
+
+            Assert.AreEqual("{ name: \"foo\" }", operation.ToString());
+        }
+
+        [TestMethod]
+        public void Equality_NoUnsafeValueEscape_Renders()
+        {
+            var serializationSettings = new SerializationSettings();
+            serializationSettings.UnsafeValueEscape = null;
+
+            var operation = new EqualityOperation(serializationSettings)
+            {
+                ColumnName = "name",
+                Value = "foo"
+            };
+
+            Assert.AreEqual("{ \"name\": foo }", operation.ToString());
         }
     }
 }

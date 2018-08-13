@@ -19,7 +19,7 @@ namespace LoopbackQueryBuilder.Tests
         {
             var queryResult = GetQueryBuilder().Where(car => car.Name.Contains("di"));
 
-            Assert.AreEqual("{ where: { name: { 'like': '%di%' } } }", queryResult);
+            Assert.AreEqual("{ where: { name: { like: '%di%' } } }", queryResult);
         }
 
         [TestMethod]
@@ -27,7 +27,7 @@ namespace LoopbackQueryBuilder.Tests
         {
             var queryResult = GetQueryBuilder().Where(car => car.Name.Contains("foo") && car.Name == "bla");
 
-            Assert.AreEqual("{ where: { and: [ { name: { 'like': '%foo%' } }, { name: 'bla' } ] } }", queryResult);
+            Assert.AreEqual("{ where: { and: [ { name: { like: '%foo%' } }, { name: 'bla' } ] } }", queryResult);
         }
 
         [TestMethod]
@@ -73,7 +73,13 @@ namespace LoopbackQueryBuilder.Tests
 
         private LookbackQueryBuilder<Car> GetQueryBuilder()
         {
-            return new LookbackQueryBuilder<Car>();
+            var lookbackQueryBuilder = new LookbackQueryBuilder<Car>();
+
+            lookbackQueryBuilder.SerializationSettings.PropertyEscape = null;
+            lookbackQueryBuilder.SerializationSettings.OperationEscape = null;
+            lookbackQueryBuilder.SerializationSettings.UnsafeValueEscape = '\'';
+
+            return lookbackQueryBuilder;
         }
     }
 }

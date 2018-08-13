@@ -6,11 +6,16 @@ namespace LoopbackQueryBuilder
 {
     class Translator : ExpressionVisitor
     {
-        private OperationBase _rootOperation = new WhereOperation();
-        private OperationBase _currentOperation = new WhereOperation();
+        private readonly SerializationSettings _serializationSettings;
 
-        public Translator()
+        private OperationBase _rootOperation;
+        private OperationBase _currentOperation;
+
+        public Translator(SerializationSettings serializationSettings)
         {
+            _rootOperation = new WhereOperation(_serializationSettings);
+
+            _serializationSettings = serializationSettings;
             _currentOperation = _rootOperation;
         }
 
@@ -77,7 +82,7 @@ namespace LoopbackQueryBuilder
 
             if (node.Method.Name == "Contains")
             {
-                var operation = new CompareOperation(ComparisionMode.Contains);
+                var operation = new CompareOperation(_serializationSettings, ComparisionMode.Contains);
                 var previousOperation = _currentOperation;
 
                 this._currentOperation.Add(operation);
@@ -109,14 +114,14 @@ namespace LoopbackQueryBuilder
             switch (node.NodeType)
             {
                 case ExpressionType.Equal:
-                    operationForThisNode = new EqualityOperation();
+                    operationForThisNode = new EqualityOperation(_serializationSettings);
                     break;
                 case ExpressionType.NotEqual:
                     // _sql.Append(" <> ");
                     break;
                 case ExpressionType.AndAlso:
                 case ExpressionType.And:
-                    operationForThisNode = new AndOperation();
+                    operationForThisNode = new AndOperation(_serializationSettings);
                     break;
                 case ExpressionType.Or:
                     // _sql.Append(" OR ");

@@ -5,6 +5,10 @@ namespace LoopbackQueryBuilder
 {
     public class WhereOperation : OperationBase
     {
+        public WhereOperation(SerializationSettings serializationSerialization) : base(serializationSerialization)
+        {
+        }
+
         public override string ToString()
         {
             var sb = new StringBuilder();
@@ -18,5 +22,6 @@ namespace LoopbackQueryBuilder
 
             return sb.ToString();
         }
+
     }
 }
