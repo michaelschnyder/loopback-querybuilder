@@ -13,6 +13,9 @@ var query = builder.Where(car => car.Id = 2);
 
 var query = builder.Where(car => car.Id = 2 && car.Name == "Audi");
 // Result: { where: { and: [ { id: 2 }, { name: 'Audi' } ] } }
+
+var query = builder.Where(car => car.Name.Contains("au"));
+// Result: { where: { name: { 'like': '%di%' } } }
 ```
 
 ## Supported Operations

@@ -17,9 +17,9 @@ namespace LoopbackQueryBuilder.Tests
         [TestMethod]
         public void Where_Contains_String()
         {
-            var queryResult = GetQueryBuilder().Where(car => car.Name.Contains("foo"));
+            var queryResult = GetQueryBuilder().Where(car => car.Name.Contains("di"));
 
-            Assert.AreEqual("{ where: { name: { 'like': '%foo%' } } }", queryResult);
+            Assert.AreEqual("{ where: { name: { 'like': '%di%' } } }", queryResult);
         }
 
         [TestMethod]
