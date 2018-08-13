@@ -78,12 +78,19 @@ namespace LoopbackQueryBuilder
             if (node.Method.Name == "Contains")
             {
                 var operation = new CompareOperation(ComparisionMode.Contains);
+                var previousOperation = _currentOperation;
 
                 this._currentOperation.Add(operation);
                 this._currentOperation = operation;
+
+                var retVal = base.VisitMethodCall(node);
+
+                this._currentOperation = previousOperation;
+
+                return retVal;
             }
             
-            return base.VisitMethodCall(node);
+            return node;
         }
 
         protected override Expression VisitUnary(UnaryExpression node)
