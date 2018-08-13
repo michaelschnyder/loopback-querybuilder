@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AndOperation.cs" />
+    <Compile Include="CompareOperation.cs" />
     <Compile Include="EqualityOperation.cs" />
     <Compile Include="LookbackQueryBuilder.cs" />
     <Compile Include="OperationBase.cs" />
