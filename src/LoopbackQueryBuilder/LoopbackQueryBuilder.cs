@@ -5,7 +5,7 @@ namespace LoopbackQueryBuilder
 {
     public class LoopbackQueryBuilder<T>
     {
-        private string whereResult;
+        private string _whereResult;
 
         public SerializationSettings SerializationSettings { get; set; } = new SerializationSettings();
 
@@ -15,14 +15,14 @@ namespace LoopbackQueryBuilder
 
             visitor.Visit(expression);
 
-            whereResult = visitor.ToString();
+            _whereResult = visitor.ToString();
 
             return this;
         }
 
         public override string ToString()
         {
-            return this.whereResult;
+            return $"{{ {_whereResult} }}";
         }
     }
 

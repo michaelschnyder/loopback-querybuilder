@@ -15,9 +15,8 @@ namespace LoopbackQueryBuilder
 
             if (this.Children.Count == 1)
             {
-                sb.Append($"{{ {SerializationSettings.OperationEscape}where{SerializationSettings.OperationEscape}: ");
+                sb.Append($"{SerializationSettings.OperationEscape}where{SerializationSettings.OperationEscape}: ");
                 sb.Append(this.Children.First());
-                sb.Append(" }");
             }
 
             return sb.ToString();
