@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Linq.Expressions;
+using System.Text;
 
 namespace LoopbackQueryBuilder
 {
     public class LoopbackQueryBuilder<T>
     {
         private string _whereResult;
+        private string _limitPart;
+        private string _skipPart;
 
         public SerializationSettings SerializationSettings { get; set; } = new SerializationSettings();
 
@@ -20,9 +23,50 @@ namespace LoopbackQueryBuilder
             return this;
         }
 
+        public LoopbackQueryBuilder<T> Take(int count)
+        {
+            _limitPart = $"{SerializationSettings.OperationEscape}limit{SerializationSettings.OperationEscape}: {count}";
+
+            return this;
+        }
+
+        public LoopbackQueryBuilder<T> Skip(int count)
+        {
+            _skipPart = $"{SerializationSettings.OperationEscape}skip{SerializationSettings.OperationEscape}: {count}";
+
+            return this;
+        }
+
         public override string ToString()
         {
-            return $"{{ {_whereResult} }}";
+            var sb = new StringBuilder();
+
+            if (!string.IsNullOrWhiteSpace(_whereResult))
+            {
+                sb.Append(_whereResult);
+            }
+
+            if (!string.IsNullOrWhiteSpace(_limitPart))
+            {
+                AddSeparatorIfRequired(sb);
+                sb.Append(_limitPart);
+            }
+
+            if (!string.IsNullOrWhiteSpace(_skipPart))
+            {
+                AddSeparatorIfRequired(sb);
+                sb.Append(_skipPart);
+            }
+
+            return $"{{ {sb} }}";
+        }
+
+        private void AddSeparatorIfRequired(StringBuilder sb)
+        {
+            if (sb.Length > 0)
+            {
+                sb.Append(", ");
+            }
         }
     }
 

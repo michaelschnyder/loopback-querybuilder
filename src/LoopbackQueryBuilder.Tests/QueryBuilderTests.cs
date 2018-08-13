@@ -71,6 +71,47 @@ namespace LoopbackQueryBuilder.Tests
             Assert.AreEqual("{ where: { and: [ { id: 2 }, { name: 'Audi' } ] } }", queryResult.ToString());
         }
 
+        [TestMethod]
+        public void Take_Int_String()
+        {
+            var queryResult = GetQueryBuilder().Take(5);
+
+            Assert.AreEqual("{ limit: 5 }", queryResult.ToString());
+        }
+
+        [TestMethod]
+        public void Where_Equals_Take_Int_String()
+        {
+            var queryResult = GetQueryBuilder().Where(car => car.Name == "foo").Take(5);
+
+            Assert.AreEqual("{ where: { name: 'foo' }, limit: 5 }", queryResult.ToString());
+        }
+
+        [TestMethod]
+        public void Skip_Int_String()
+        {
+            var queryResult = GetQueryBuilder().Skip(5);
+
+            Assert.AreEqual("{ skip: 5 }", queryResult.ToString());
+        }
+
+        [TestMethod]
+        public void Skip_Int_Take_Int_String()
+        {
+            var queryResult = GetQueryBuilder().Skip(5).Take(50);
+
+            Assert.AreEqual("{ limit: 50, skip: 5 }", queryResult.ToString());
+        }
+
+        [TestMethod]
+        public void Where_Equals_Skip_Int_Take_Int_String()
+        {
+            var queryResult = GetQueryBuilder().Where(car => car.Name == "foo").Skip(5).Take(50);
+
+            Assert.AreEqual("{ where: { name: 'foo' }, limit: 50, skip: 5 }", queryResult.ToString());
+        }
+
+
         private LoopbackQueryBuilder<Car> GetQueryBuilder()
         {
             var lookbackQueryBuilder = new LoopbackQueryBuilder<Car>();
