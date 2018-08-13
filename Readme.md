@@ -20,6 +20,7 @@ The following operations are supported and covered by tests.
 
 * Equals / ==
 * And / &&
+* Contains (only single / without AND combinations)
 
 Other operations are currently not supported.
 

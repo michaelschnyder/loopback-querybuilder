@@ -15,6 +15,22 @@ namespace LoopbackQueryBuilder.Tests
         }
 
         [TestMethod]
+        public void Where_Contains_String()
+        {
+            var queryResult = GetQueryBuilder().Where(car => car.Name.Contains("foo"));
+
+            Assert.AreEqual("{ where: { name: { 'like': '%foo%' } } }", queryResult);
+        }
+
+        [TestMethod]
+        public void Where_ContainsAndEqual_String()
+        {
+            var queryResult = GetQueryBuilder().Where(car => car.Name.Contains("foo") && car.Name == "bla");
+
+            Assert.AreEqual("{ where: { and: [ { name: { 'like': '%foo%' } }, { name: 'bla' } ] } }", queryResult);
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(NotSupportedException))]
         public void Where_NotEquals_String()
         {

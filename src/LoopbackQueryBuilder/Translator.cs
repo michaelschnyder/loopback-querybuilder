@@ -5,11 +5,17 @@ namespace LoopbackQueryBuilder
 {
     class Translator : ExpressionVisitor
     {
+        private OperationBase _rootOperation = new WhereOperation();
         private OperationBase _currentOperation = new WhereOperation();
+
+        public Translator()
+        {
+            _currentOperation = _rootOperation;
+        }
 
         public override string ToString()
         {
-            return _currentOperation.ToString();
+            return _rootOperation.ToString();
         }
 
         protected override Expression VisitMember(MemberExpression node)
@@ -44,6 +50,19 @@ namespace LoopbackQueryBuilder
             }
 
             return node;
+        }
+
+        protected override Expression VisitMethodCall(MethodCallExpression node)
+        {
+            if (node.Method.Name == "Contains")
+            {
+                var operation = new CompareOperation(ComparisionMode.Contains);
+
+                this._currentOperation.Add(operation);
+                this._currentOperation = operation;
+            }
+            
+            return base.VisitMethodCall(node);
         }
 
         protected override Expression VisitUnary(UnaryExpression node)
@@ -86,5 +105,36 @@ namespace LoopbackQueryBuilder
 
             return node;
         }
+    }
+
+    internal class CompareOperation : EqualityOperation
+    {
+        private readonly ComparisionMode _mode;
+
+        public CompareOperation(ComparisionMode mode)
+        {
+            _mode = mode;
+        }
+
+        public override string ToString()
+        {
+            var rawValue = string.Empty;
+            var operationString = string.Empty;
+
+            if ((_mode == ComparisionMode.Contains))
+            {
+                operationString = "like";
+                rawValue = $"%{Value}%";
+            }
+
+            var saveValue = !this.IsSaveValue ? $"'{rawValue}'" : rawValue;
+
+            return $"{{ {ColumnName}: {{ '{operationString}': {saveValue} }} }}";
+        }
+    }
+
+    public enum ComparisionMode
+    {
+        Contains
     }
 }
