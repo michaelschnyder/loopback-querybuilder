@@ -35,10 +35,10 @@ The following operations are supported and covered by tests.
 ### Combination
 * **And** (`&&`) for `string`, `int` and `bool` Equality-Expressions, including `Contains()`
 
-## Pagination
+### Pagination
 Both `Skip()` and `Take()` are implemented and will issue additional query parameters.
 
-Example:
+#### Example:
 ```c#
 var query = builder.Where(car => car.Name.Contains("au")).Skip(10).Take(50);
 // Result: { "where": { "name": { "like": "%di%" } }, "skip": 10, "take": 50 }
