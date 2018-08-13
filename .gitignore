@@ -7,3 +7,5 @@
 
 **/packages/**
 src/LoopbackQueryBuilder/obj/
+**/bin/Release/*
+**/obj/Release/*
