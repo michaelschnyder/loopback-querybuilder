@@ -20,8 +20,19 @@ namespace LoopbackQueryBuilder
 
         protected override Expression VisitMember(MemberExpression node)
         {
+            Trace.WriteLine($"VisitMember for {node}");
+
             var propertyName = node.Member.Name;
 
+            propertyName = MakeLowerCamelCase(propertyName);
+
+            (this._currentOperation as EqualityOperation).ColumnName = propertyName;
+
+            return node;
+        }
+
+        private static string MakeLowerCamelCase(string propertyName)
+        {
             var firstChar = propertyName[0];
 
             if (char.IsUpper(firstChar))
@@ -29,9 +40,7 @@ namespace LoopbackQueryBuilder
                 propertyName = $"{char.ToLower(firstChar)}{propertyName.Substring(1)}";
             }
 
-            (this._currentOperation as EqualityOperation).ColumnName = propertyName;
-
-            return node;
+            return propertyName;
         }
 
         protected override Expression VisitConstant(ConstantExpression node)
