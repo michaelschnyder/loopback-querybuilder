@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq.Expressions;
 
 namespace LoopbackQueryBuilder
@@ -45,6 +46,8 @@ namespace LoopbackQueryBuilder
 
         protected override Expression VisitConstant(ConstantExpression node)
         {
+            Trace.WriteLine($"VisitConstant for {node}");
+
             var binaryOperation = (_currentOperation as EqualityOperation);
 
             if (node.Type == typeof(int) || node.Type == typeof(double))
@@ -70,6 +73,8 @@ namespace LoopbackQueryBuilder
 
         protected override Expression VisitMethodCall(MethodCallExpression node)
         {
+            Trace.WriteLine($"VisitMethodCall for {node}");
+
             if (node.Method.Name == "Contains")
             {
                 var operation = new CompareOperation(ComparisionMode.Contains);
@@ -83,11 +88,15 @@ namespace LoopbackQueryBuilder
 
         protected override Expression VisitUnary(UnaryExpression node)
         {
+            Trace.WriteLine($"VisitUnary for {node}");
+
             throw new NotSupportedException($"The node-type '{node.NodeType}' is not supported!");
         }
 
         protected override Expression VisitBinary(BinaryExpression node)
         {
+            Trace.WriteLine($"VisitBinary for {node}");
+
             OperationBase operationForThisNode = null;
 
             switch (node.NodeType)
