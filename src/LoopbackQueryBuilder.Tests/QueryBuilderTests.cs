@@ -11,7 +11,7 @@ namespace LoopbackQueryBuilder.Tests
         {
             var queryResult = GetQueryBuilder().Where(car => car.Name == "foo");
 
-            Assert.AreEqual("{ where: { name: 'foo' } }", queryResult);
+            Assert.AreEqual("{ where: { name: 'foo' } }", queryResult.ToString());
         }
 
         [TestMethod]
@@ -19,7 +19,7 @@ namespace LoopbackQueryBuilder.Tests
         {
             var queryResult = GetQueryBuilder().Where(car => car.Name.Contains("di"));
 
-            Assert.AreEqual("{ where: { name: { like: '%di%' } } }", queryResult);
+            Assert.AreEqual("{ where: { name: { like: '%di%' } } }", queryResult.ToString());
         }
 
         [TestMethod]
@@ -27,7 +27,7 @@ namespace LoopbackQueryBuilder.Tests
         {
             var queryResult = GetQueryBuilder().Where(car => car.Name.Contains("foo") && car.Name == "bla");
 
-            Assert.AreEqual("{ where: { and: [ { name: { like: '%foo%' } }, { name: 'bla' } ] } }", queryResult);
+            Assert.AreEqual("{ where: { and: [ { name: { like: '%foo%' } }, { name: 'bla' } ] } }", queryResult.ToString());
         }
 
         [TestMethod]
@@ -36,7 +36,7 @@ namespace LoopbackQueryBuilder.Tests
         {
             var queryResult = GetQueryBuilder().Where(car => !(car.Name == "foo"));
 
-            Assert.AreEqual("{ where: { name: 'foo' } }", queryResult);
+            Assert.AreEqual("{ where: { name: 'foo' } }", queryResult.ToString());
         }
 
         [TestMethod]
@@ -44,7 +44,7 @@ namespace LoopbackQueryBuilder.Tests
         {
             var queryResult = GetQueryBuilder().Where(car => car.Id == 2);
 
-            Assert.AreEqual("{ where: { id: 2 } }", queryResult);
+            Assert.AreEqual("{ where: { id: 2 } }", queryResult.ToString());
         }
 
         [TestMethod]
@@ -52,7 +52,7 @@ namespace LoopbackQueryBuilder.Tests
         {
             var queryResult = GetQueryBuilder().Where(car => car.IsPerfect == true);
 
-            Assert.AreEqual("{ where: { isPerfect: true } }", queryResult);
+            Assert.AreEqual("{ where: { isPerfect: true } }", queryResult.ToString());
         }
 
         [TestMethod]
@@ -60,7 +60,7 @@ namespace LoopbackQueryBuilder.Tests
         {
             var queryResult = GetQueryBuilder().Where(car => car.IsPerfect);
 
-            Assert.AreEqual("{ where: { isPerfect: true } }", queryResult);
+            Assert.AreEqual("{ where: { isPerfect: true } }", queryResult.ToString());
         }
 
         [TestMethod]
@@ -68,7 +68,7 @@ namespace LoopbackQueryBuilder.Tests
         {
             var queryResult = GetQueryBuilder().Where(car => car.Id == 2 && car.Name == "Audi");
 
-            Assert.AreEqual("{ where: { and: [ { id: 2 }, { name: 'Audi' } ] } }", queryResult);
+            Assert.AreEqual("{ where: { and: [ { id: 2 }, { name: 'Audi' } ] } }", queryResult.ToString());
         }
 
         private LoopbackQueryBuilder<Car> GetQueryBuilder()

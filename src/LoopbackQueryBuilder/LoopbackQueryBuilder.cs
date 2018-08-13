@@ -5,15 +5,24 @@ namespace LoopbackQueryBuilder
 {
     public class LoopbackQueryBuilder<T>
     {
+        private string whereResult;
+
         public SerializationSettings SerializationSettings { get; set; } = new SerializationSettings();
 
-        public string Where(Expression<Func<T, bool>> expression)
+        public LoopbackQueryBuilder<T> Where(Expression<Func<T, bool>> expression)
         {
             var visitor = new Translator(this.SerializationSettings);
 
             visitor.Visit(expression);
 
-            return visitor.ToString();
+            whereResult = visitor.ToString();
+
+            return this;
+        }
+
+        public override string ToString()
+        {
+            return this.whereResult;
         }
     }
 
